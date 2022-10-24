@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "TmwYOg9G3vBw9ceuZnie0rnEN++5x6s0/QJHS+3T6Vc=",
+  "Source": "dotnet-recipe-api",
+  "BasePath": "_content/dotnet-recipe-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
