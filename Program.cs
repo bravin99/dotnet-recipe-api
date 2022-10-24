@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<RecipeDbContext>(
-    options => options.UseSqlite("filename=Data/Database/api.db")
+    options => options.UseSqlite("filename=Data/Database/RecipeApi.db")
 );
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

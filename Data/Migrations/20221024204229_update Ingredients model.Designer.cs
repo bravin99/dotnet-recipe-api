@@ -11,8 +11,8 @@ using dotnet_recipe_api.Data.Context;
 namespace dotnet_recipe_api.Data.Migrations
 {
     [DbContext(typeof(RecipeDbContext))]
-    [Migration("20221024133647_create initial mmigrations")]
-    partial class createinitialmmigrations
+    [Migration("20221024204229_update Ingredients model")]
+    partial class updateIngredientsmodel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,11 +25,11 @@ namespace dotnet_recipe_api.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Amount")
-                        .IsRequired()
+                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Measurement")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -62,9 +62,6 @@ namespace dotnet_recipe_api.Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Directions")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -76,7 +73,7 @@ namespace dotnet_recipe_api.Data.Migrations
                     b.Property<int>("NumberOfServings")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Publish")
+                    b.Property<bool>("Published")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Updated")

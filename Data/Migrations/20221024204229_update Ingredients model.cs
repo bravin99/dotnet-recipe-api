@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace dotnet_recipe_api.Data.Migrations
 {
-    public partial class createinitialmmigrations : Migration
+    public partial class updateIngredientsmodel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,13 +16,12 @@ namespace dotnet_recipe_api.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
                     Directions = table.Column<string>(type: "TEXT", nullable: false),
                     NumberOfServings = table.Column<int>(type: "INTEGER", nullable: false),
                     CaloriesPerServing = table.Column<double>(type: "REAL", nullable: false),
                     CookTime = table.Column<string>(type: "TEXT", nullable: false),
                     WrittenBy = table.Column<string>(type: "TEXT", nullable: false),
-                    Publish = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Published = table.Column<bool>(type: "INTEGER", nullable: false),
                     Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Updated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
@@ -40,7 +39,7 @@ namespace dotnet_recipe_api.Data.Migrations
                     RecipeId = table.Column<int>(type: "INTEGER", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    Amount = table.Column<string>(type: "TEXT", nullable: false)
+                    Measurement = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

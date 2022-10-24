@@ -8,8 +8,7 @@ namespace dotnet_recipe_api.Models
         public int Id { get; set; }
         [Required]
         public string? Name { get; set; }
-        public string? Description { get; set; }
-        public Ingredient[]? Ingredients { get; set; }
+        public virtual List<Ingredient>? Ingredients { get; set; }
         [Required]
         public string? Directions { get; set; }
         [Required]
@@ -21,22 +20,22 @@ namespace dotnet_recipe_api.Models
         [Required]
         public string? WrittenBy { get; set; }
         [Required]
-        public bool Publish { get; set; }
+        public bool Published { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
     }
 
     public class Ingredient
     {
-        [Key]
         public int Id { get; set; }
+        [Required]
         [ForeignKey("Recipe")]
         public int RecipeId { get; set; }
         [Required]
         public string? Name { get; set; }
         public string? Description { get; set; }
         [Required]
-        public string? Amount { get; set; }
+        public string? Measurement { get; set; }
 
     }
 
