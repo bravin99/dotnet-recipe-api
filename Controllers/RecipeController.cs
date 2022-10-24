@@ -46,6 +46,29 @@ namespace Controllers
             return BadRequest("An error occured while saving your recipe");
         }
 
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult<string>> DeleteRecipe(int id)
+        {
+            var recipe = await _context.Recipes!.FirstOrDefaultAsync(r => r.Id == id);
+            
+            if (recipe != null)
+            {
+                _context.Recipes!.Remove(recipe);
+                await _context.SaveChangesAsync();
+                return Ok($"Recipe {recipe.Name} deleted successfully!");
+            }
+            return NotFound();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Ingredient>> GetIngredientById(int id)
+        {
+            var ing = await _context.Ingredients!.FirstOrDefaultAsync(i => i.Id == id);
+            if (ing == null)
+                return NotFound();
+            return Ok(ing);
+        }
+
         [HttpPost("add-ingredient/{id}")]
         public async Task<ActionResult<string>> AddTopping(int id, [FromBody]Ingredient value)
         {
@@ -62,20 +85,6 @@ namespace Controllers
                 return Ok($"Ingredient {newIngredient.Name} added to recipe with id {id}");
             }
             return BadRequest();
-        }
-
-        [HttpDelete("delete/{id}")]
-        public async Task<ActionResult<string>> DeleteRecipe(int id)
-        {
-            var recipe = await _context.Recipes!.FirstOrDefaultAsync(r => r.Id == id);
-            
-            if (recipe != null)
-            {
-                _context.Recipes!.Remove(recipe);
-                await _context.SaveChangesAsync();
-                return Ok($"Recipe {recipe.Name} deleted successfully!");
-            }
-            return NotFound();
         }
 
         [HttpDelete("delete/ingredient/{id}")]
