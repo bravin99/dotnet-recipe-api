@@ -60,7 +60,7 @@ namespace Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("ingredient/{id}")]
         public async Task<ActionResult<Ingredient>> GetIngredientById(int id)
         {
             var ing = await _context.Ingredients!.FirstOrDefaultAsync(i => i.Id == id);
@@ -70,7 +70,7 @@ namespace Controllers
         }
 
         [HttpPost("add-ingredient/{id}")]
-        public async Task<ActionResult<string>> AddTopping(int id, [FromBody]Ingredient value)
+        public async Task<ActionResult<string>> AddIngredient(int id, [FromBody]Ingredient value)
         {
             var newIngredient = new Ingredient(){
                 Name = value.Name,
