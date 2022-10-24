@@ -14,6 +14,7 @@ namespace Controllers
         {
             _context = context;
         }
+
         [HttpGet("all")]
         public async Task<ActionResult<Recipe[]>> GetRecipes()
         {
@@ -26,7 +27,7 @@ namespace Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Recipe>> GetRecipeById(int id)
         {
-            var recipe = await _context.Recipes!.FirstOrDefaultAsync(r => r.Id == id);
+            var recipe = await _context.Recipes!.Include(r => r.Ingredients).FirstOrDefaultAsync(r => r.Id == id);
 
             if (recipe == null)
                 return NotFound();
@@ -69,8 +70,25 @@ namespace Controllers
             var recipe = await _context.Recipes!.FirstOrDefaultAsync(r => r.Id == id);
             
             if (recipe != null)
+            {
+                _context.Recipes!.Remove(recipe);
+                await _context.SaveChangesAsync();
                 return Ok($"Recipe {recipe.Name} deleted successfully!");
+            }
             return NotFound();
+        }
+
+        [HttpDelete("delete/ingredient/{id}")]
+        public async Task<ActionResult<string>> DeleteIngredient(int id)
+        {
+            var ing = await _context.Ingredients!.FirstOrDefaultAsync(r => r.Id == id);
+            if (ing != null)
+            {
+                _context.Ingredients!.Remove(ing);
+                await _context.SaveChangesAsync();
+                return Ok($"Ingredient deleted succesfully");
+            }
+            return BadRequest();
         }
 
 
